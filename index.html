@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هوش مصنوعی صبح دانش</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: linear-gradient(to top, #008800, #004d00, #001a00);
+            min-height: 100vh;
+            font-family: 'Lalezar', cursive;
+            color: white;
+            padding: 20px;
+            max-width: 480px;
+            margin: 0 auto;
+            padding-bottom: 80px;
+        }
+
+        /* صفحه اصلی */
+        .header-bar {
+            width: 100%;
+            height: 70px;
+            background-color: #00ff88;
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 50px;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 1);
+        }
+
+        .header-text {
+            font-size: 28px;
+            color: #000000;
+            text-shadow: 0 0 8px #00ff88, 0 0 16px #00ff88, 0 0 24px #00ff88, 0 0 32px #00ff41, 0 0 50px #00ff41;
+            z-index: 2;
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #000000;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #000000;
+            animation: float 6s infinite ease-in-out, twinkle 4s infinite;
+        }
+
+        /* موقعیت ۲۴ ستاره */
+        .star:nth-child(1) { left: 5%; top: 15%; animation-delay: 0s, 0s; }
+        .star:nth-child(2) { left: 12%; top: 65%; animation-delay: 0.8s, 1.2s; }
+        .star:nth-child(3) { left: 18%; top: 30%; animation-delay: 1.5s, 0.5s; }
+        .star:nth-child(4) { left: 25%; top: 75%; animation-delay: 2.2s, 2s; }
+        .star:nth-child(5) { left: 32%; top: 20%; animation-delay: 0.4s, 1.8s; }
+        .star:nth-child(6) { left: 38%; top: 55%; animation-delay: 1.8s, 0.3s; }
+        .star:nth-child(7) { left: 45%; top: 35%; animation-delay: 2.5s, 2.5s; }
+        .star:nth-child(8) { left: 52%; top: 80%; animation-delay: 0.2s, 1s; }
+        .star:nth-child(9) { left: 58%; top: 25%; animation-delay: 1.2s, 0.8s; }
+        .star:nth-child(10) { left: 65%; top: 70%; animation-delay: 2s, 1.5s; }
+        .star:nth-child(11) { left: 72%; top: 15%; animation-delay: 0.6s, 2.2s; }
+        .star:nth-child(12) { left: 78%; top: 60%; animation-delay: 1.4s, 0s; }
+        .star:nth-child(13) { left: 85%; top: 40%; animation-delay: 2.8s, 1.8s; }
+        .star:nth-child(14) { left: 90%; top: 85%; animation-delay: 0s, 0.6s; }
+        .star:nth-child(15) { left: 8%; top: 45%; animation-delay: 1.6s, 2.4s; }
+        .star:nth-child(16) { left: 15%; top: 10%; animation-delay: 2.3s, 0.4s; }
+        .star:nth-child(17) { left: 22%; top: 50%; animation-delay: 0.9s, 1.6s; }
+        .star:nth-child(18) { left: 30%; top: 90%; animation-delay: 1.1s, 2.1s; }
+        .star:nth-child(19) { left: 68%; top: 10%; animation-delay: 2.6s, 0.9s; }
+        .star:nth-child(20) { left: 95%; top: 50%; animation-delay: 0.5s, 1.3s; }
+        .star:nth-child(21) { left: 40%; top: 10%; animation-delay: 1.9s, 2.7s; }
+        .star:nth-child(22) { left: 55%; top: 90%; animation-delay: 0.3s, 0.2s; }
+        .star:nth-child(23) { left: 80%; top: 30%; animation-delay: 2.1s, 1.1s; }
+        .star:nth-child(24) { left: 10%; top: 80%; animation-delay: 1.3s, 2.6s; }
+
+        @keyframes float { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-20px) rotate(15deg)} }
+        @keyframes twinkle { 0%,100%{opacity:0.8;box-shadow:0 0 8px #000} 50%{opacity:1;box-shadow:0 0 15px #000} }
+
+        .buttons-container { width: 100%; display: flex; justify-content: space-between; gap: 20px; margin-bottom: 60px; }
+        .btn { background: rgba(255,255,255,0.15); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.25); border-radius: 18px; color: white; cursor: pointer; transition: all 0.4s; box-shadow: 0 10px 25px rgba(0,0,0,0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; }
+        .btn:hover { background: rgba(0,255,136,0.35); transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,255,136,0.4); }
+        .btn-left { width: 120px; height: 220px; font-size: 24px; }
+        .right-buttons { display: flex; flex-direction: column; justify-content: space-between; width: calc(100% - 140px); height: 220px; }
+        .btn-horizontal { width: 100%; height: 100px; font-size: 26px; }
+        .btn-image-gen { background: rgba(255,255,255,0.08); backdrop-filter: blur(18px); }
+        .btn-news { font-size: 18px; }
+
+        .suggestions-section { width: 100%; margin: 20px 0 40px; }
+        .suggestions-title { font-size: 26px; margin-bottom: 20px; text-align: center; }
+        .suggestion-box { background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); border-radius: 15px; padding: 18px; margin-bottom: 15px; font-size: 22px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+
+        /* صفحه اخبار */
+        #updates-page { display: none; }
+        .updates-title { font-size: 32px; text-align: center; margin: 40px 0 30px; text-shadow: 0 0 20px #00ff88; }
+        .update-item { background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border: 1px solid rgba(0,255,136,0.5); border-radius: 20px; padding: 20px; margin-bottom: 25px; box-shadow: 0 0 20px rgba(0,255,136,0.3); cursor: pointer; transition: all 0.3s; }
+        .update-item:hover { box-shadow: 0 0 30px rgba(0,255,136,0.6); transform: translateY(-5px); }
+        .update-item-title { font-size: 28px; color: #00ff88; text-align: center; margin-bottom: 15px; text-shadow: 0 0 15px #00ff88; }
+        .read-more { font-size: 20px; color: #aaffaa; text-align: center; margin-top: 10px; }
+        .update-desc { font-size: 22px; line-height: 2; text-align: justify; display: none; margin-top: 20px; }
+        .back-btn { margin: 40px auto; padding: 15px 40px; background: rgba(0,255,136,0.3); border: 1px solid #00ff88; border-radius: 20px; cursor: pointer; font-size: 24px; box-shadow: 0 0 20px rgba(0,255,136,0.5); display: block; width: fit-content; }
+
+        /* مودال تصویرسازی */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 100; }
+        .modal-content { background: rgba(0,255,136,0.2); backdrop-filter: blur(15px); border: 2px solid #00ff88; border-radius: 20px; padding: 30px; text-align: center; max-width: 90%; font-size: 24px; box-shadow: 0 0 30px rgba(0,255,136,0.8); }
+
+        /* نوار پایین - مشکی خاکستری کامل */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: #1e1e1e;
+            border-top: 1px solid #333;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .nav-item {
+            color: #ffffff;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px;
+        }
+
+        .nav-item i {
+            font-size: 28px;
+            display: block;
+        }
+
+        .nav-item.active {
+            color: #00ff88;
+            transform: translateY(-4px);
+        }
+
+        .nav-item:hover {
+            color: #00ff88;
+        }
+
+        /* صفحه ربات صبح دانش */
+        #robot-page { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, #000000 0%, #0f0a00 20%, #1f1400 40%, #2f1e00 60%, #3f2800 80%, #4d3200 100%); overflow: hidden; }
+        #robot-page .mobile-container { width: 100%; max-width: 420px; margin: 0 auto; height: 100vh; overflow-y: auto; padding: 60px 20px 120px; display: flex; flex-direction: column; align-items: center; }
+        #robot-page .title { color: #ffdd99; font-size: 32px; text-align: center; margin-bottom: 50px; display: flex; align-items: center; gap: 15px; justify-content: center; }
+        #robot-page .robot-emoji { font-size: 50px; }
+        #robot-page .warning-box { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); color: #ff6666; font-size: 18px; text-align: center; padding: 20px 18px; border-radius: 20px; border: 1px solid rgba(255,102,102,0.3); margin-bottom: 40px; max-width: 360px; }
+        #robot-page .description-box { background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); color: white; font-size: 17px; text-align: center; padding: 25px 20px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.2); margin-bottom: 40px; max-width: 360px; line-height: 1.7; }
+        #robot-page .tabs { display: flex; width: 100%; max-width: 360px; margin-bottom: 40px; }
+        #robot-page .tab { flex: 1; padding: 16px; text-align: center; background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); color: white; font-size: 20px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: all 0.4s; margin: 0 8px; }
+        #robot-page .tab.active { background: rgba(255,220,100,0.2); border-color: rgba(255,220,100,0.5); color: #ffdd99; }
+        #robot-page .pricing-content { display: none; background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255,220,100,0.3); border-radius: 25px; padding: 30px 20px; text-align: center; max-width: 340px; width: 100%; margin-bottom: 40px; }
+        #robot-page .pricing-content.active { display: block; }
+        #robot-page .old-price { text-decoration: line-through; color: rgba(255,255,255,0.6); font-size: 20px; }
+        #robot-page .new-price { font-size: 36px; font-weight: bold; color: #ffdd99; margin: 15px 0; }
+        #robot-page .plan-name { font-size: 26px; color: #ffdd99; margin-bottom: 15px; }
+        #robot-page .buy-button { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); color: white; font-size: 22px; padding: 18px 30px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.3); cursor: pointer; transition: all 0.4s; margin: 25px auto 0; display: block; width: fit-content; min-width: 240px; max-width: 300px; }
+        #robot-page .buy-button:hover { background: rgba(255,255,255,0.25); transform: scale(1.05); }
+        #robot-page .contact-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); color: white; font-size: 22px; text-align: center; padding: 40px 30px; border-radius: 30px; border: 1px solid rgba(255,220,100,0.4); max-width: 320px; width: 90%; z-index: 100; }
+        #robot-page .contact-modal.active { display: block; }
+        #robot-page .close-modal { margin-top: 30px; font-size: 40px; cursor: pointer; color: #ff6666; }
+        @keyframes twinkleFloat { 0%,100%{opacity:0.3;transform:translateY(0)} 50%{opacity:0.8;transform:translateY(-20px)} }
+        #robot-page .star { position: absolute; background-color: #ffdd99; border-radius: 50%; animation: twinkleFloat linear infinite; opacity: 0.6; z-index: 1; box-shadow: 0 0 8px #ffdd99; }
+
+        /* صفحه تنظیمات */
+        #settings-page { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, #000000, #1f8b1f); overflow-y: auto; padding: 20px; max-width: 480px; margin: 0 auto; }
+
+        #settings-page .glass {
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4); width: 100%; margin-bottom: 20px;
+        }
+        #settings-page h2 { text-align: center; margin-bottom: 25px; font-size: 28px; }
+        .upload-label { display: block; text-align: center; margin: 15px 0 25px; font-size: 18px; color: rgba(255,255,255,0.8); }
+        #settings-page input[type="text"], #settings-page input[type="email"], #settings-page input[type="file"] {
+            width: 100%; padding: 15px; margin: 10px 0; background: rgba(255,255,255,0.15); border: none; border-radius: 10px; color: white; font-size: 20px;
+        }
+        #settings-page input::placeholder { color: rgba(255,255,255,0.7); }
+        #settings-page button { width: 100%; padding: 15px; margin-top: 20px; background: rgba(255,255,255,0.2); border: none; border-radius: 12px; color: white; font-size: 24px; cursor: pointer; transition: 0.3s; }
+        #settings-page button:hover { background: rgba(255,255,255,0.3); }
+        .top-rect { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
+        .profile-img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,0.3); }
+        .default-profile { width: 70px; height: 70px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 40px; }
+        .username { font-size: 26px; }
+        .options-container { display: flex; flex-direction: column; gap: 15px; }
+        .option-btn { display: flex; align-items: center; padding: 16px 18px; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); transition: 0.3s; cursor: pointer; }
+        .option-btn:hover { background: rgba(255,255,255,0.25); }
+        .glass-icon { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-left: 12px; }
+        .option-text { font-size: 23px; flex-grow: 1; text-align: right; }
+        .content-text { font-size: 19px; line-height: 2.2; }
+        .content-box { background: rgba(255,255,255,0.15); border-radius: 12px; padding: 18px; margin-bottom: 18px; border: 1px solid rgba(255,255,255,0.2); }
+        .content-box strong { display: block; margin-bottom: 8px; font-size: 21px; }
+        .email-text { font-size: 20px; direction: ltr; text-align: center; unicode-bidi: embed; }
+
+        @media (max-width: 480px) {
+            .header-text { font-size: 24px; }
+            .btn-horizontal { font-size: 24px; }
+            .btn-news { font-size: 17px; }
+            .suggestions-title, .suggestion-box { font-size: 20px; }
+            .nav-item i { font-size: 26px; }
+            .bottom-nav { height: 65px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- صفحه اصلی -->
+    <div id="main-page">
+        <div class="header-bar">
+            <div class="header-text">هوش مصنوعی صبح دانش</div>
+            <div class="stars">
+                <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+                <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+                <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+                <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+                <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+                <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+            </div>
+        </div>
+
+        <div class="buttons-container">
+            <button class="btn btn-left" onclick="openChat()">شروع چت</button>
+            <div class="right-buttons">
+                <button class="btn btn-horizontal btn-image-gen" id="imageGenBtn">تصویر سازی</button>
+                <button class="btn btn-horizontal btn-news" onclick="showPage('updates')">اخبار و بروزرسانی ها</button>
+            </div>
+        </div>
+
+        <div class="suggestions-section">
+            <div class="suggestions-title">پیشنهاد سوال از صبح دانش</div>
+            <div class="suggestion-box">۵ تا فیلم بر اساس سلیقه شما</div>
+            <div class="suggestion-box">astrology امروز من</div>
+            <div class="suggestion-box">چطوری پولامو پس‌انداز کنم</div>
+            <div class="suggestion-box">مصاحبه شغلیت با صبح دانش</div>
+            <div class="suggestion-box">۵ سال دیگه من کجام؟</div>
+            <div class="suggestion-box">ساختن کمد لباس دیجیتال</div>
+            <div class="suggestion-box">فال حافظ با صبح دانش</div>
+            <div class="suggestion-box">خلاصه اخبار امروز</div>
+        </div>
+    </div>
+
+    <!-- صفحه اخبار -->
+    <div id="updates-page">
+        <div class="header-bar">
+            <div class="header-text">اخبار و بروزرسانی ها</div>
+            <div class="stars">
+                <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+                <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+                <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+                <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+                <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+                <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+            </div>
+        </div>
+
+        <div class="updates-title">اخبار و بروزرسانی ها</div>
+
+        <div class="update-item" onclick="this.querySelector('.update-desc').style.display = (this.querySelector('.update-desc').style.display === 'block') ? 'none' : 'block'; this.querySelector('.read-more').innerText = (this.querySelector('.update-desc').style.display === 'block') ? 'بستن' : 'خواندن بیشتر';">
+            <div class="update-item-title">هوش مصنوعی تصویر ساز بزودی</div>
+            <div class="read-more">خواندن بیشتر</div>
+            <div class="update-desc">
+                به‌زودی قابلیت تولید تصویر با هوش مصنوعی به صبح دانش اضافه می‌شود.<br>
+                شما می‌توانید فقط با توصیف ایده خود، تصاویر حرفه‌ای و خلاقانه بسازید.<br>
+                از طراحی لوگو تا تصویرسازی داستان، همه چیز در دسترس شما خواهد بود.<br>
+                کیفیت بالا، سرعت عالی و پشتیبانی کامل از زبان فارسی.<br>
+                منتظر این ویژگی فوق‌العاده باشید!
+            </div>
+        </div>
+
+        <div class="update-item" onclick="this.querySelector('.update-desc').style.display = (this.querySelector('.update-desc').style.display === 'block') ? 'none' : 'block'; this.querySelector('.read-more').innerText = (this.querySelector('.update-desc').style.display === 'block') ? 'بستن' : 'خواندن بیشتر';">
+            <div class="update-item-title">ربات آی لرن بزودی</div>
+            <div class="read-more">خواندن بیشتر</div>
+            <div class="update-desc">
+                ربات تخصصی آموزش و درس با نام آی لرن به‌زودی راه‌اندازی می‌شود.<br>
+                این ربات به عنوان معلم خصوصی شما در هر موضوع درسی عمل خواهد کرد.<br>
+                توضیح ساده مفاهیم پیچیده، حل تمرین، آزمون‌های هوشمند و برنامه‌ریزی درسی.<br>
+                مناسب برای دانش‌آموزان، دانشجویان و همه علاقه‌مندان به یادگیری.<br>
+                یادگیری را لذت‌بخش و مؤثرتر کنید!
+            </div>
+        </div>
+
+        <div class="update-item" onclick="this.querySelector('.update-desc').style.display = (this.querySelector('.update-desc').style.display === 'block') ? 'none' : 'block'; this.querySelector('.read-more').innerText = (this.querySelector('.update-desc').style.display === 'block') ? 'بستن' : 'خواندن بیشتر';">
+            <div class="update-item-title">دستیار صوتی بزودی</div>
+            <div class="read-more">خواندن بیشتر</div>
+            <div class="update-desc">
+                قابلیت مکالمه صوتی با صبح دانش به‌زودی فعال می‌شود.<br>
+                فقط صحبت کنید و پاسخ‌های دقیق و طبیعی دریافت کنید.<br>
+                مناسب برای مواقعی که تایپ کردن سخت است یا در حال حرکت هستید.<br>
+                پشتیبانی کامل از زبان فارسی با لهجه طبیعی.<br>
+                تجربه‌ای شبیه به صحبت با یک دوست باهوش!
+            </div>
+        </div>
+
+        <div class="back-btn" onclick="showPage('main')">بازگشت</div>
+    </div>
+
+    <!-- صفحه ربات صبح دانش -->
+    <div id="robot-page">
+        <div class="mobile-container">
+            <div class="title">
+                <span class="robot-emoji">🤖</span> ربات صبح دانش
+            </div>
+            <div class="warning-box">
+                هوش مصنوعی کاملا رایگانه ولی برای استفاده از ربات باید اشتراک بخرید
+            </div>
+            <div class="description-box">
+                شما میتوانید این ربات رو برای پشتیبانی وبسایت خود و واتساپ استفاده کنید همچنین این ربات ادمین تلگرام و اینستاگرام و فیس بوک و ... شما هم میشه و میتونه تو کار ها کمکتون کنه.
+                <br><br>
+                این ربات می‌تونه به طور خودکار پاسخ‌های هوشمند به مشتریان بده و زمان شما رو صرفه‌جویی کنه.
+                <br><br>
+                با هوش مصنوعی پیشرفته، می‌تونه تحلیل داده‌ها و گزارش‌های دقیق ارائه بده.
+                <br><br>
+                امنیت بالا و یکپارچگی با پلتفرم‌های مختلف، تجربه‌ای روان و مطمئن رو تضمین می‌کنه.
+            </div>
+            <div class="tabs">
+                <div class="tab active" data-plan="monthly">ماهانه</div>
+                <div class="tab" data-plan="annual">سالانه</div>
+            </div>
+            <div id="monthly" class="pricing-content active">
+                <div class="plan-name">اشتراک ماهانه</div>
+                <div class="old-price">۴۰۰,۰۰۰ تومان</div>
+                <div class="new-price">۲۰۰,۰۰۰ تومان</div>
+                <div class="buy-button" onclick="openContact()">خرید اشتراک</div>
+            </div>
+            <div id="annual" class="pricing-content">
+                <div class="plan-name">اشتراک سالانه</div>
+                <div class="old-price">۲,۴۰۰,۰۰۰ تومان</div>
+                <div class="new-price">۱,۸۰۰,۰۰۰ تومان</div>
+                <div class="buy-button" onclick="openContact()">خرید اشتراک</div>
+            </div>
+        </div>
+
+        <div id="contactModal" class="contact-modal">
+            برای خرید اشتراک با این شماره تماس بگیرید<br><br>
+            <a href="tel:+989039304464" style="color: #ffdd99; font-size: 30px; text-decoration: none;">
+                +۹۸۹۰۳۹۳۰۴۴۶۴
+            </a>
+            <div class="close-modal" onclick="closeContact()">✖</div>
+        </div>
+    </div>
+
+    <!-- صفحه تنظیمات -->
+    <div id="settings-page">
+        <div id="registerForm" class="glass">
+            <h2>خوش آمدی!</h2>
+            <p style="text-align:center; margin-bottom:20px; font-size:18px;">لطفاً اطلاعات خود را وارد کن</p>
+            <input type="text" id="userName" placeholder="نام و نام خانوادگی" required>
+            <input type="email" id="userEmail" placeholder="ایمیل (اختیاری)">
+            <label class="upload-label">این قسمت آپلود عکس پروفایل است</label>
+            <input type="file" id="userPhoto" accept="image/*">
+            <button onclick="saveProfile()">ثبت و ورود</button>
+        </div>
+
+        <div id="mainPage" class="main-page" style="display:none;">
+            <div class="glass top-rect" id="profileSection">
+                <div class="default-profile" id="defaultIcon">
+                    <span class="material-icons">person</span>
+                </div>
+                <img id="profileImage" class="profile-img" style="display:none;">
+                <div class="username" id="displayName">کاربر</div>
+            </div>
+            <div class="glass options-container">
+                <div class="option-btn" onclick="openEdit()">
+                    <div class="glass-icon"><span class="material-icons">edit</span></div>
+                    <div class="option-text">ویرایش پروفایل</div>
+                </div>
+                <div class="option-btn" onclick="showAbout()">
+                    <div class="glass-icon"><span class="material-icons">info</span></div>
+                    <div class="option-text">درباره برنامه</div>
+                </div>
+                <div class="option-btn" onclick="showFAQ()">
+                    <div class="glass-icon"><span class="material-icons">help_outline</span></div>
+                    <div class="option-text">سوالات متداول</div>
+                </div>
+                <div class="option-btn" onclick="showSupport()">
+                    <div class="glass-icon"><span class="material-icons">support_agent</span></div>
+                    <div class="option-text">پشتیبانی</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contentPage" class="glass main-page" style="display:none;">
+            <h2 id="contentTitle" style="text-align:center; margin-bottom:20px;"></h2>
+            <div id="contentText" class="content-text"></div>
+            <button onclick="backToMain()" style="margin-top:30px;">برگشت</button>
+        </div>
+    </div>
+
+    <!-- مودال تصویرسازی -->
+    <div class="modal" id="constructionModal">
+        <div class="modal-content">
+            این قسمت در حال ساخت است<br>
+            تا بروزرسانی بعدی منتظر بمانید<br><br>
+            با تشکر
+            <div class="close-modal" onclick="document.getElementById('constructionModal').style.display='none'">بستن</div>
+        </div>
+    </div>
+
+    <!-- نوار پایین -->
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="showPage('main')">
+            <i class="fas fa-home"></i>
+        </div>
+        <div class="nav-item" onclick="openChat()">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="nav-item" onclick="showPage('robot')">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="nav-item" onclick="showPage('settings')">
+            <i class="fas fa-cog"></i>
+        </div>
+    </div>
+
+    <script>
+        function openChat() {
+            window.open('https://chat.cxgenie.ai?aid=1b6a6a5f-9730-4a0c-b697-8aaf7dc64617&lang=fa', '_blank');
+        }
+
+        function showPage(pageId) {
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('updates-page').style.display = 'none';
+            document.getElementById('robot-page').style.display = 'none';
+            document.getElementById('settings-page').style.display = 'none';
+
+            if (pageId === 'main') document.getElementById('main-page').style.display = 'block';
+            else if (pageId === 'updates') document.getElementById('updates-page').style.display = 'block';
+            else if (pageId === 'robot') document.getElementById('robot-page').style.display = 'block';
+            else if (pageId === 'settings') document.getElementById('settings-page').style.display = 'block';
+
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            if (pageId === 'main' || pageId === 'updates') document.querySelector('.nav-item:nth-child(1)').classList.add('active');
+            else if (pageId === 'robot') document.querySelector('.nav-item:nth-child(3)').classList.add('active');
+            else if (pageId === 'settings') document.querySelector('.nav-item:nth-child(4)').classList.add('active');
+        }
+
+        // ستاره‌های صفحه ربات
+        function createStars() {
+            if (document.getElementById('robot-page').style.display === 'block') {
+                const numStars = 80;
+                for (let i = 0; i < numStars; i++) {
+                    let star = document.createElement('div');
+                    star.classList.add('star');
+                    let size = Math.random() * 3 + 1;
+                    star.style.width = size + 'px';
+                    star.style.height = size + 'px';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    let duration = Math.random() * 6 + 6;
+                    star.style.animationDuration = duration + 's';
+                    let delay = Math.random() * 5;
+                    star.style.animationDelay = delay + 's';
+                    document.getElementById('robot-page').appendChild(star);
+                }
+            }
+        }
+
+        document.getElementById('robot-page').addEventListener('DOMNodeInserted', createStars);
+
+        // تب‌های صفحه ربات
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const plan = tab.getAttribute('data-plan');
+                document.querySelectorAll('.pricing-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(plan).classList.add('active');
+            });
+        });
+
+        function openContact() { document.getElementById('contactModal').classList.add('active'); }
+        function closeContact() { document.getElementById('contactModal').classList.remove('active'); }
+
+        // اسکریپت کامل صفحه تنظیمات
+        window.addEventListener('load', () => {
+            const savedName = localStorage.getItem('userName');
+            const savedPhoto = localStorage.getItem('userPhoto');
+            if (savedName && document.getElementById('displayName')) {
+                document.getElementById('displayName').textContent = savedName;
+                if (savedPhoto) {
+                    document.getElementById('profileImage').src = savedPhoto;
+                    document.getElementById('profileImage').style.display = 'block';
+                    document.getElementById('defaultIcon').style.display = 'none';
+                }
+                document.getElementById('registerForm').style.display = 'none';
+                document.getElementById('mainPage').style.display = 'block';
+            }
+        });
+
+        function saveProfile() {
+            const name = document.getElementById('userName').value.trim();
+            if (!name) { alert('لطفاً نام خود را وارد کنید!'); return; }
+            localStorage.setItem('userName', name);
+            document.getElementById('displayName').textContent = name;
+            const photoInput = document.getElementById('userPhoto');
+            if (photoInput.files && photoInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    localStorage.setItem('userPhoto', e.target.result);
+                    document.getElementById('profileImage').src = e.target.result;
+                    document.getElementById('profileImage').style.display = 'block';
+                    document.getElementById('defaultIcon').style.display = 'none';
+                };
+                reader.readAsDataURL(photoInput.files[0]);
+            }
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'block';
+        }
+
+        function openEdit() {
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            document.getElementById('userName').value = localStorage.getItem('userName') || '';
+        }
+
+        function showAbout() {
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('contentPage').style.display = 'block';
+            document.getElementById('contentTitle').textContent = 'درباره برنامه';
+            document.getElementById('contentText').innerHTML = `
+                <div class="content-box">
+                    صبح دانش یک هوش مصنوعی پیشرفته و هوشمند است<br>
+                    که توسط دانش‌آموزان و معلمان مدرسه صبح دانش تهران ساخته شده.<br><br>
+                    هدف ما از ساخت این هوش مصنوعی، کمک به یادگیری بهتر<br>
+                    و آسان‌تر دانش‌آموزان در سراسر ایران است.<br><br>
+                    صبح دانش می‌تواند به سوالات درسی شما پاسخ دهد،<br>
+                    مسائل ریاضی را حل کند، متن‌های ادبی را توضیح دهد<br>
+                    و حتی در پروژه‌های تحقیقاتی کنار شما باشد.<br><br>
+                    این برنامه کاملاً رایگان است و هیچ هزینه‌ای ندارد.<br>
+                    ما معتقدیم آموزش باکیفیت باید برای همه در دسترس باشد.<br><br>
+                    تیم توسعه‌دهنده ما همیشه در حال بهبود و افزودن قابلیت‌های جدید است<br>
+                    تا تجربه بهتری برای شما فراهم کنیم.<br><br>
+                    از اینکه صبح دانش را انتخاب کردید، سپاسگزاریم!
+                </div>
+            `;
+        }
+
+        function showFAQ() {
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('contentPage').style.display = 'block';
+            document.getElementById('contentTitle').textContent = 'سوالات متداول';
+            document.getElementById('contentText').innerHTML = `
+                <div class="content-box">
+                    <strong>۱. آیا استفاده از صبح دانش هزینه دارد؟</strong> خیر! صبح دانش کاملاً رایگان است و همیشه خواهد بود.
+                </div>
+                <div class="content-box">
+                    <strong>۲. آیا نیاز به ثبت نام دارد؟</strong> فقط یک بار برای شخصی‌سازی پروفایل ثبت نام می‌کنید، اما بدون آن هم می‌توانید استفاده کنید.
+                </div>
+                <div class="content-box">
+                    <strong>۳. آیا اطلاعات من امن است؟</strong> بله، اطلاعات شما فقط روی دستگاه خودتان ذخیره می‌شود و به هیچ سروری ارسال نمی‌شود.
+                </div>
+                <div class="content-box">
+                    <strong>۴. صبح دانش چه موضوعاتی را پشتیبانی می‌کند؟</strong> همه دروس مدرسه، ریاضی، فیزیک، شیمی، ادبیات، زبان انگلیسی و خیلی موضوعات دیگر.
+                </div>
+            `;
+        }
+
+        function showSupport() {
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('contentPage').style.display = 'block';
+            document.getElementById('contentTitle').textContent = 'پشتیبانی';
+            document.getElementById('contentText').innerHTML = `
+                <div class="content-box">
+                    اگر سوال، پیشنهاد یا مشکلی دارید، با ما در ارتباط باشید:
+                </div>
+                <div class="content-box">
+                    <strong>ایمیل:</strong><br>
+                    <span class="email-text">arshammajidi168@gmail.com</span>
+                </div>
+                <div class="content-box">
+                    <strong>تلفن:</strong><br>
+                    ۰۹۰۳۹۳۰۴۴۶۴
+                </div>
+                <div class="content-box">
+                    معمولاً در کمتر از ۲۴ ساعت به پیام‌های شما پاسخ می‌دهیم.
+                </div>
+            `;
+        }
+
+        function backToMain() {
+            document.getElementById('contentPage').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'block';
+        }
+
+        // مودال تصویرسازی
+        document.getElementById('imageGenBtn').addEventListener('click', e => {
+            e.preventDefault();
+            document.getElementById('constructionModal').style.display = 'flex';
+        });
+    </script>
+</body>
+</html>
